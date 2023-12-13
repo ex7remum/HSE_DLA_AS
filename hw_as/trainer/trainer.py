@@ -181,7 +181,7 @@ class Trainer(BaseTrainer):
                             source = 'spoof'
                         f.write("_" + " " + attack + " " + source + " " + str(logit[1]))
 
-            asv_scores_file = './LA/LA/ASVspoof2019_LA_asv_scores/ASVspoof2019.LA.asv.eval.gi.trl.scores.txt'
+            asv_scores_file = '/kaggle/input/asvpoof-2019-dataset/LA/LA/ASVspoof2019_LA_asv_scores/ASVspoof2019.LA.asv.eval.gi.trl.scores.txt'
             eer_cm, min_tDCF = calculate_tDCF_EER('cm_scores_eval.txt',
                                                   asv_scores_file,
                                                   'output.txt')
