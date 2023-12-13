@@ -1,0 +1,59 @@
+{
+  "name": "config",
+  "n_gpu": 1,
+  "arch": {
+    "type": "RawNet2",
+    "args": {}
+  },
+  "data": {
+    "train": {
+      "batch_size": 32,
+      "num_workers": 0,
+      "datasets": [
+        {
+          "type": "ASVspoofDataset",
+          "args": {
+            "root": "/kaggle/input/asvpoof-2019-dataset",
+            "is_train": 1
+          }
+        }
+      ]
+    },
+    "val": {
+      "batch_size": 32,
+      "num_workers": 0,
+      "datasets": [
+        {
+          "type": "ASVspoofDataset",
+          "args": {
+            "root": "/kaggle/input/asvpoof-2019-dataset",
+            "is_train": 0
+          }
+        }
+      ]
+    }
+  },
+  "optimizer": {
+    "type": "Adam",
+    "args": {
+      "lr": 1e-4,
+      "weight_decay": 1e-4
+    }
+  },
+  "loss": {
+    "type": "RawNetLoss",
+    "args": {}
+  },
+  "trainer": {
+    "epochs": 100,
+    "save_dir": "saved/",
+    "save_period": 10,
+    "verbosity": 2,
+    "monitor": "off",
+    "early_stop": 100,
+    "visualize": "wandb",
+    "wandb_project": "as_project",
+    "len_epoch": 500,
+    "grad_norm_clip": 10
+  }
+}
