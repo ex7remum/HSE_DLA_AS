@@ -37,15 +37,14 @@ class ASVSpoofDataset(Dataset):
             full_path = "LA/LA/ASVspoof2019_LA_eval/flac/{}.flac".format(name)
 
         audio, sr = torchaudio.load(os.path.join(self.root, full_path))
-        print(audio.shape)
 
         assert sr == 16000
 
-        if len(audio) < self.max_wav_len:
-            n_repeat = self.max_wav_len // len(audio) + 1
-            audio = audio.repeat(n_repeat)
+        if audio.shape[1] < self.max_wav_len:
+            n_repeat = self.max_wav_len // audio.shape[1] + 1
+            audio = audio.repeat(1, n_repeat)
 
-        audio = audio[:self.max_wav_len]
+        audio = audio[:, self.max_wav_len]
         label = int(self.labels[idx] == "bonafide")
         attack = self.attack_type[idx]
 
