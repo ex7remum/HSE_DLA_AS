@@ -179,7 +179,7 @@ class Trainer(BaseTrainer):
                             source = 'bonafide'
                         else:
                             source = 'spoof'
-                        f.write("_" + " " + attack + " " + source + " " + logit)
+                        f.write("_" + " " + attack + " " + source + " " + str(logit.item()))
 
             asv_scores_file = './LA/LA/ASVspoof2019_LA_asv_scores/ASVspoof2019.LA.asv.eval.gi.trl.scores.txt'
             eer_cm, min_tDCF = calculate_tDCF_EER('cm_scores_eval.txt',
