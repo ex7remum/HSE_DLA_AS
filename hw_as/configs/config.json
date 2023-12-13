@@ -11,7 +11,7 @@
       "num_workers": 0,
       "datasets": [
         {
-          "type": "ASVspoofDataset",
+          "type": "ASVSpoofDataset",
           "args": {
             "root": "/kaggle/input/asvpoof-2019-dataset",
             "is_train": 1
@@ -24,7 +24,7 @@
       "num_workers": 0,
       "datasets": [
         {
-          "type": "ASVspoofDataset",
+          "type": "ASVSpoofDataset",
           "args": {
             "root": "/kaggle/input/asvpoof-2019-dataset",
             "is_train": 0
