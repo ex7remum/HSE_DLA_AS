@@ -41,7 +41,7 @@ class ASVSpoofDataset(Dataset):
         assert sr == 16000
 
         if len(audio) < self.max_wav_len:
-            n_repeat = self.max_wav_len / len(audio) + 1
+            n_repeat = self.max_wav_len // len(audio) + 1
             audio = audio.repeat(n_repeat)
 
         audio = audio[:self.max_wav_len]
