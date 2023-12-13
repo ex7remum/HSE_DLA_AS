@@ -44,7 +44,10 @@
 
   ],
   "lr_scheduler": {
-
+    "type": "ConstantLR",
+    "args": {
+      "factor": 1
+    }
   },
   "loss": {
     "type": "RawNetLoss",
