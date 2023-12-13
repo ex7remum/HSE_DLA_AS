@@ -44,7 +44,7 @@ class ASVSpoofDataset(Dataset):
             n_repeat = self.max_wav_len // audio.shape[1] + 1
             audio = audio.repeat(1, n_repeat)
 
-        audio = audio[:, self.max_wav_len]
+        audio = audio[:, :self.max_wav_len]
         label = int(self.labels[idx] == "bonafide")
         attack = self.attack_type[idx]
 
