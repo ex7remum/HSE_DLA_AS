@@ -37,6 +37,7 @@ class ASVSpoofDataset(Dataset):
             full_path = "LA/LA/ASVspoof2019_LA_eval/flac/{}.flac".format(name)
 
         audio, sr = torchaudio.load(os.path.join(self.root, full_path))
+        print(audio.shape)
 
         assert sr == 16000
 
