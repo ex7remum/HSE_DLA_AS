@@ -9,9 +9,8 @@ def collate_fn(dataset_items: List[dict]):
     """
     Collate and pad fields in dataset items
     """
-    all_audios = [item['audio'].unsqueeze(0) for item in dataset_items]
+    all_audios = [item['audio'] for item in dataset_items]
     batch_audio = torch.stack(all_audios)
-    print(batch_audio.shape)
 
     batch_label = torch.tensor([item['label'] for item in dataset_items])
 
