@@ -176,7 +176,7 @@ class Trainer(BaseTrainer):
                             source = 'bonafide'
                         else:
                             source = 'spoof'
-                        f.write("_" + " " + attack + " " + source + " " + str(logit[1]))
+                        f.write("_" + " " + attack + " " + source + " " + str(logit[1].item()))
                         f.write('\n')
 
             asv_scores_file = '/kaggle/input/asvpoof-2019-dataset/LA/LA/ASVspoof2019_LA_asv_scores/ASVspoof2019.LA.asv.eval.gi.trl.scores.txt'
