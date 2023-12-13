@@ -22,7 +22,7 @@ def get_dataloaders(configs: ConfigParser):
         datasets = []
         for ds in params["datasets"]:
             datasets.append(configs.init_obj(
-                ds, hw_as.datasets, config_parser=configs))
+                ds, hw_as.datasets))
         assert len(datasets)
         if len(datasets) > 1:
             dataset = ConcatDataset(datasets)
