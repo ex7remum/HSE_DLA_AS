@@ -12,7 +12,7 @@ class ASVSpoofDataset(Dataset):
         if is_train:
             protocol_path = "LA/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.train.trn.txt"
         else:
-            protocol_path = "LA/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.eval.trn.txt"
+            protocol_path = "LA/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.eval.trl.txt"
 
         data = np.genfromtxt(os.path.join(self.root, protocol_path), dtype=str)
 
