@@ -43,6 +43,9 @@
   "metrics": [
 
   ],
+  "lr_scheduler": {
+
+  },
   "loss": {
     "type": "RawNetLoss",
     "args": {}
