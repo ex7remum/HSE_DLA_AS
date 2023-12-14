@@ -46,7 +46,7 @@
   "lr_scheduler": {
     "type": "ExponentialLR",
     "args": {
-      "factor": 0.99
+      "gamma": 0.99
     }
   },
   "loss": {
