@@ -44,7 +44,7 @@ class RawNet2(BaseModel):
 
     def forward(self, x):
         x = self.sinc_layer(x)
-        x = F.max_pool1d(x, 3)
+        x = F.max_pool1d(torch.abs(x), 3)
         x = self.bn1(x)
         x = self.lrelu(x)
 

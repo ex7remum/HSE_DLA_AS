@@ -115,7 +115,7 @@ class Trainer(BaseTrainer):
                 break
         log = last_train_metrics
 
-        if (epoch + 1) % 10 == 0:
+        if epoch % 10 == 0:
             for part, dataloader in self.evaluation_dataloaders.items():
                 val_log = self._evaluation_epoch(epoch, part, dataloader)
                 for name, value in val_log.items():

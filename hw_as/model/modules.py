@@ -50,9 +50,9 @@ class SincConvFast(nn.Module):
                           self.out_channels + 1)
         hz = self.to_hz(mel)
 
-        self.low_hz_ = nn.Parameter(torch.Tensor(hz[:-1]).view(-1, 1))
+        self.low_hz_ = nn.Parameter(torch.Tensor(hz[:-1]).view(-1, 1), requires_grad=False)
 
-        self.band_hz_ = nn.Parameter(torch.Tensor(np.diff(hz)).view(-1, 1))
+        self.band_hz_ = nn.Parameter(torch.Tensor(np.diff(hz)).view(-1, 1), requires_grad=False)
 
         # Hamming window
         n_lin = torch.linspace(0, (self.kernel_size/2)-1, steps=int((self.kernel_size/2)))
