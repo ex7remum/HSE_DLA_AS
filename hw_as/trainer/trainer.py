@@ -110,6 +110,8 @@ class Trainer(BaseTrainer):
                 last_train_metrics = self.train_metrics.result()
                 self.train_metrics.reset()
             if batch_idx >= self.len_epoch:
+                if self.lr_scheduler is not None:
+                    self.lr_scheduler.step()
                 break
         log = last_train_metrics
 
@@ -139,8 +141,6 @@ class Trainer(BaseTrainer):
             losses["loss"].backward()
             self._clip_grad_norm()
             self.optimizer.step()
-            if self.lr_scheduler is not None:
-                self.lr_scheduler.step()
 
             for loss_name, loss_value in losses.items():
                 metrics.update(loss_name, loss_value.item())
