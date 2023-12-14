@@ -113,13 +113,14 @@ class Trainer(BaseTrainer):
                 break
         log = last_train_metrics
 
-        for part, dataloader in self.evaluation_dataloaders.items():
-            val_log = self._evaluation_epoch(epoch, part, dataloader)
-            for name, value in val_log.items():
-                log.update(**{name: value})
-                self.writer.add_scalar(
-                    name, value
-                )
+        if (epoch + 1) % 10 == 0:
+            for part, dataloader in self.evaluation_dataloaders.items():
+                val_log = self._evaluation_epoch(epoch, part, dataloader)
+                for name, value in val_log.items():
+                    log.update(**{name: value})
+                    self.writer.add_scalar(
+                        name, value
+                    )
 
         return log
 

@@ -44,9 +44,9 @@
 
   ],
   "lr_scheduler": {
-    "type": "ConstantLR",
+    "type": "ExponentialLR",
     "args": {
-      "factor": 1
+      "factor": 0.99
     }
   },
   "loss": {
@@ -62,7 +62,7 @@
     "early_stop": 100,
     "visualize": "wandb",
     "wandb_project": "as_project",
-    "len_epoch": 500,
+    "len_epoch": 793,
     "grad_norm_clip": 10
   }
 }
