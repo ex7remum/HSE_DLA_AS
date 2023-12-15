@@ -97,7 +97,7 @@ if __name__ == "__main__":
     wg_dir = './pretrained_models'
     os.makedirs(wg_dir, exist_ok=True)
 
-    model_url = 'https://drive.google.com/uc?export=download&id=1E1PSnoN-jYqfc5Z3hiftBHg5XEuNy4EPrL'
+    model_url = 'https://drive.google.com/uc?export=download&id=1PSnoN-jYqfc5Z3hiftBHg5XEuNy4EPrL'
     model_path = './pretrained_models/model.pth'
     if not os.path.exists(model_path):
         print('Downloading RawNet2 model.')
