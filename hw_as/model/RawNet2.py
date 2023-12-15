@@ -15,7 +15,7 @@ class RawNet2(BaseModel):
                                        min_low_hz=min_low_hz,
                                        min_band_hz=min_band_hz,
                                        filter_type=filter_type,
-                                       use_grad=use_grad)
+                                       use_grad=bool(use_grad))
 
         self.bn1 = nn.BatchNorm1d(sinc_out_channels)
         self.bn2 = nn.BatchNorm1d(res2_out_channels)
