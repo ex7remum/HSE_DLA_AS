@@ -99,7 +99,7 @@ if __name__ == "__main__":
     wg_dir = './pretrained_models'
     os.makedirs(wg_dir, exist_ok=True)
 
-    model_url = 'https://drive.google.com/uc?export=download&id=1PSnoN-jYqfc5Z3hiftBHg5XEuNy4EPrL'
+    model_url = 'https://drive.google.com/uc?export=download&id=107b2NDnRazBuEMIj0G4TuLDJO_zzPz6n'
     model_path = './pretrained_models/model.pth'
     if not os.path.exists(model_path):
         print('Downloading RawNet2 model.')
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     else:
         print('RawNet2 model already exists.')
 
-    config_url = 'https://drive.google.com/uc?export=download&id=1F2m8wIL25_PjKq6mwkY87NeEZbeozHc9'
+    config_url = 'https://drive.google.com/uc?export=download&id=1GRQSJl8g_UEmO59xPEdKgSi9UMqTmWxU'
     config_path = './pretrained_models/config.json'
     if not os.path.exists(config_path):
         print('Downloading RawNet2 model test config.')
