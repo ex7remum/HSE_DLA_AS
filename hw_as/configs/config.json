@@ -4,7 +4,7 @@
   "arch": {
     "type": "RawNet2",
     "args": {
-      "filter_type": "s3",
+      "filter_type": "s1",
       "use_abs": 1,
       "use_grad": 0
     }
