@@ -15,7 +15,8 @@ class SincConvFast(nn.Module):
         return 700 * (10 ** (mel / 2595) - 1)
 
     def __init__(self, out_channels, kernel_size, sample_rate=16000, in_channels=1,
-                 stride=1, padding=0, dilation=1, bias=False, groups=1, min_low_hz=50, min_band_hz=50):
+                 stride=1, padding=0, dilation=1, bias=False, groups=1, min_low_hz=50,
+                 min_band_hz=50, filter_type='s1', use_grad=False):
 
         super(SincConvFast, self).__init__()
 
@@ -45,14 +46,21 @@ class SincConvFast(nn.Module):
         low_hz = 30
         high_hz = self.sample_rate / 2 - (self.min_low_hz + self.min_band_hz)
 
-        mel = np.linspace(self.to_mel(low_hz),
-                          self.to_mel(high_hz),
-                          self.out_channels + 1)
-        hz = self.to_hz(mel)
+        if filter_type == 's1':
+            mel = np.linspace(self.to_mel(low_hz),
+                              self.to_mel(high_hz),
+                              self.out_channels + 1)
+            hz = self.to_hz(mel)
+        elif filter_type == 's2':
+            raise NotImplementedError
+        elif filter_type == 's3':
+            hz = np.linspace(low_hz, high_hz, self.out_channels + 1)
+        else:
+            raise NotImplementedError
 
-        self.low_hz_ = nn.Parameter(torch.Tensor(hz[:-1]).view(-1, 1), requires_grad=False)
+        self.low_hz_ = nn.Parameter(torch.Tensor(hz[:-1]).view(-1, 1), requires_grad=use_grad)
 
-        self.band_hz_ = nn.Parameter(torch.Tensor(np.diff(hz)).view(-1, 1), requires_grad=False)
+        self.band_hz_ = nn.Parameter(torch.Tensor(np.diff(hz)).view(-1, 1), requires_grad=use_grad)
 
         # Hamming window
         n_lin = torch.linspace(0, (self.kernel_size/2)-1, steps=int((self.kernel_size/2)))

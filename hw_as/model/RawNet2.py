@@ -8,16 +8,19 @@ from hw_as.base import BaseModel
 class RawNet2(BaseModel):
     def __init__(self, sinc_out_channels=20, sinc_kernel_size=1024, res1_out_channels=20,
                  res2_out_channels=128, min_low_hz=0, min_band_hz=0, gru_hidden=1024, fc_hidden=1024,
-                 num_gru_layers=3, leaky_relu_slope=0.3, **kwargs):
+                 num_gru_layers=3, leaky_relu_slope=0.3, use_abs=True, use_grad=True, filter_type='s1', **kwargs):
         super(RawNet2, self).__init__()
         self.sinc_layer = SincConvFast(out_channels=sinc_out_channels,
                                        kernel_size=sinc_kernel_size,
                                        min_low_hz=min_low_hz,
-                                       min_band_hz=min_band_hz)
+                                       min_band_hz=min_band_hz,
+                                       filter_type=filter_type,
+                                       use_grad=use_grad)
 
         self.bn1 = nn.BatchNorm1d(sinc_out_channels)
         self.bn2 = nn.BatchNorm1d(res2_out_channels)
         self.lrelu = nn.LeakyReLU(leaky_relu_slope)
+        self.use_abs = use_abs
 
         resblocks = list()
         resblocks.append(ResidualBlock(in_channels=sinc_out_channels,
@@ -44,7 +47,12 @@ class RawNet2(BaseModel):
 
     def forward(self, x):
         x = self.sinc_layer(x)
-        x = F.max_pool1d(torch.abs(x), 3)
+
+        if self.use_abs:
+            x = F.max_pool1d(torch.abs(x), 3)
+        else:
+            x = F.max_pool1d(x, 3)
+
         x = self.bn1(x)
         x = self.lrelu(x)
 
