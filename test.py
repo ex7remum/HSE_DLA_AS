@@ -37,7 +37,7 @@ def main(config, out_file, test_dir):
             n_repeat = 64000 // audio.shape[1] + 1
             audio = audio.repeat(1, n_repeat)
 
-        audio = audio[:, :64000].unsqueeze(0)  # 1x1x64000
+        audio = audio[0, :64000].unsqueeze(0)  # 1x1x64000
         with torch.no_grad():
             logits = model(audio.to(device))["logits"]
             logits = F.softmax(logits, dim=1)
