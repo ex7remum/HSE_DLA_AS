@@ -8,7 +8,7 @@ from hw_as.base import BaseModel
 class RawNet2(BaseModel):
     def __init__(self, sinc_out_channels=20, sinc_kernel_size=1024, res1_out_channels=20,
                  res2_out_channels=128, min_low_hz=0, min_band_hz=0, gru_hidden=1024, fc_hidden=1024,
-                 num_gru_layers=3, leaky_relu_slope=0.3, use_abs=True, use_grad=True, filter_type='s1', **kwargs):
+                 num_gru_layers=3, leaky_relu_slope=0.3, use_abs=True, use_grad=False, filter_type='s1', **kwargs):
         super(RawNet2, self).__init__()
         self.sinc_layer = SincConvFast(out_channels=sinc_out_channels,
                                        kernel_size=sinc_kernel_size,
