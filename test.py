@@ -41,6 +41,7 @@ def main(config, out_file, test_dir):
 
         with torch.no_grad():
             logits = model(audio.to(device))["logits"]
+            print(logits)
             logits = F.softmax(logits, dim=1)
             prob_spoof = logits[0][0]
             with open(out_file, 'a') as out:
