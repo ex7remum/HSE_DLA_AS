@@ -5,7 +5,7 @@
     "type": "RawNet2",
     "args": {
       "filter_type": "s3",
-      "use_abs": 0,
+      "use_abs": 1,
       "use_grad": 0
     }
   },
@@ -40,8 +40,7 @@
   "optimizer": {
     "type": "Adam",
     "args": {
-      "lr": 1e-4,
-      "weight_decay": 1e-4
+      "lr": 1e-4
     }
   },
   "metrics": [
